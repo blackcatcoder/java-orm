@@ -3,24 +3,27 @@ package com.java.orm.controller;
 import com.java.orm.entities.Person;
 import com.java.orm.entities.Dossier;
 import com.java.orm.entities.DossierPerson;
+import com.java.orm.repository.DossierPersonRepository;
 import com.java.orm.repository.DossierRepository;
 import com.java.orm.repository.PersonRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping
+//@RequestMapping
 public class IndexController {
 
     private final DossierRepository dossierRepository;
     private final PersonRepository personRepository;
 
-    public IndexController(DossierRepository dossierRepository, PersonRepository personRepository){
+    private final DossierPersonRepository dossierPersonRepository;
+
+    public IndexController(DossierRepository dossierRepository, PersonRepository personRepository, DossierPersonRepository dossierPersonRepository){
         this.dossierRepository = dossierRepository;
         this.personRepository = personRepository;
+        this.dossierPersonRepository = dossierPersonRepository;
     }
 
     @GetMapping("index")
@@ -31,12 +34,12 @@ public class IndexController {
     @GetMapping("dossier")
     public String getDossier(){
         Dossier rs =  dossierRepository.findById(1l).orElse(null);
-        List<DossierPerson> dossierPersonList = rs.getDossierPersonList();
+        List<DossierPerson> dossierPersonList = rs.getDossierPersons();
         System.out.println(dossierPersonList.size());
         Person p = dossierPersonList.get(0).getPerson();
-        System.out.println(p.getDossierPersonList().size());
+        System.out.println(p.getDossierPersons().size());
 
-        Dossier active = p.getDossierPersonList().stream().filter(d -> d.getStatus().equals("inactive")).map(d -> d.getDossier()).findFirst().orElse(null);
+        Dossier active = p.getDossierPersons().stream().filter(d -> d.getStatus().equals("inactive")).map(d -> d.getDossier()).findFirst().orElse(null);
         System.out.println(active);
 
         return rs != null ? rs.toString() : "";
@@ -45,9 +48,60 @@ public class IndexController {
     @GetMapping("person")
     public String getPerson(){
         Person p = personRepository.findById(2l).orElse(null);
-        System.out.println(p.getDossierPersonList().size());
+        System.out.println(p.getDossierPersons().size());
         System.out.println("");
         return "lala";
+    }
+
+    @GetMapping("person/getAll")
+    public List<Person> getAllPerson(){
+        //Iterator<Person> personIterator = personRepository.findAll();
+        List<Person> persons = personRepository.findAll();
+        return persons.stream().map(p -> new Person(p.getId(), p.getName())).collect(Collectors.toList());
+        //return person;
+    }
+
+    @GetMapping("person/{id}")
+    public void deletePerson(@PathVariable Long id){
+        personRepository.deleteById(id);
+    }
+
+    @GetMapping("dossier/{dossierId}/person/{personId}")
+    public void removePersonFromDossier(@PathVariable Long dossierId, @PathVariable Long personId){
+        Dossier dossier = dossierRepository.findById(dossierId).orElse(null);
+        Person person = personRepository.findById(personId).orElse(null);
+
+        if (dossier != null && person != null) {
+
+            //dossier.getDossierPersons().size();
+            //person.getDossierPersons().size();
+
+            DossierPerson dossierPerson = findDossierPerson(dossier, person);
+
+
+            if (dossierPerson != null) {
+                dossier.getDossierPersons().remove(dossierPerson);
+              //  person.getDossierPersons().remove(dossierPerson);
+
+                dossierPersonRepository.delete(dossierPerson);
+
+                //dossierRepository.save(dossier);
+               // personRepository.save(person);
+
+
+                //personRepository.delete(person);
+            }
+        }
+
+    }
+
+    private DossierPerson findDossierPerson(Dossier dossier, Person person) {
+        for (DossierPerson dp : dossier.getDossierPersons()) {
+            if (dp.getPerson().equals(person)) {
+                return dp;
+            }
+        }
+        return null;
     }
 
 }

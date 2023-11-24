@@ -3,7 +3,6 @@ package com.java.orm;
 import com.java.orm.entities.Dossier;
 import com.java.orm.entities.DossierPerson;
 import com.java.orm.entities.Person;
-import com.java.orm.entities.StudentEntity;
 import com.java.orm.repository.DossierRepository;
 import com.java.orm.repository.PersonRepository;
 import com.java.orm.repository.StudentRepository;
@@ -27,43 +26,71 @@ public class JavaOrmApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(StudentRepository studentRepository, DossierRepository dossierRepository, PersonRepository personRepository){
 		return args -> {
-			studentRepository.save(new StudentEntity(1l, "vinv.2491@gmail.com"));
+			//studentRepository.save(new StudentEntity(1l, "vinv.2491@gmail.com"));
 
-			List<DossierPerson> dossierPersonList = new ArrayList<>();
-			DossierPerson dossierPerson = new DossierPerson();
-			dossierPerson.setId(3l);
-			dossierPerson.setStatus("active");
 
+			List<DossierPerson> dpl = new ArrayList<>();
+			DossierPerson dp1 = new DossierPerson();
+			dp1.setId(11l);
+			dp1.setStatus("active1");
+			DossierPerson dp2 = new DossierPerson();
+			dp2.setId(12l);
+			dp2.setStatus("active2");
 
 			Person p1 = new Person();
-			p1.setId(2l);
+			p1.setId(31l);
 			p1.setName("person name 1");
-			//p1.setDossierPersonList(dossierPersonList);
-			personRepository.save(p1);
+			p1 = personRepository.save(p1);
+
+			Person p2 = new Person();
+			p2.setId(32l);
+			p2.setName("person name 2");
+			p2 = personRepository.save(p2);
 
 			Dossier d1 = new Dossier();
 			d1.setId(1l);
 			d1.setName("dossier name 1");
-			dossierPerson.setDossier(d1);
-			dossierPerson.setPerson(p1);
-			dossierPersonList.add(dossierPerson);
-			d1.setDossierPersonList(dossierPersonList);
-			dossierRepository.save(d1);
 
-			List<DossierPerson> dossierPersonList2 = new ArrayList<>();
-			DossierPerson dossierPerson2 = new DossierPerson();
-			dossierPerson2.setId(4l);
-			dossierPerson2.setStatus("inactive");
+			dp1.setDossier(d1);
+			dp1.setPerson(p1);
+			dpl.add(dp1);
+			dp2.setDossier(d1);
+			dp2.setPerson(p2);
+			dpl.add(dp2);
 
-			Dossier d2 = new Dossier();
-			d2.setId(5l);
-			d2.setName("dossier name 2");
+			d1.setDossierPersons(dpl);
+			d1 = dossierRepository.save(d1);
 
-			dossierPerson2.setDossier(d2);
-			dossierPerson2.setPerson(p1);
-			dossierPersonList2.add(dossierPerson2);
-			d2.setDossierPersonList(dossierPersonList2);
-			dossierRepository.save(d2);
+
+
+			//----- way 2
+
+
+
+
+//			Person p = new Person();
+//			p.setId(11l);
+//			p.setName("p11");
+//			p = personRepository.save(p);
+//
+//			Person p2 = new Person();
+//			p2.setId(12l);
+//			p2.setName("p12");
+//			p2 = personRepository.save(p2);
+//
+//			Dossier d = new Dossier();
+//			d.setId(20l);
+//			d.setName("d1");
+//
+//			//
+//			d.addPerson(p);
+//			d.addPerson(p2);
+//
+//			dossierRepository.save(d);
+
+
+
+			//dossierRepository.save(d);
 
 		};
 	}

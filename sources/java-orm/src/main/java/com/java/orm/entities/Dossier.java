@@ -2,6 +2,7 @@ package com.java.orm.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,8 +10,29 @@ public class Dossier {
     @Id
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "dossier", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<DossierPerson> dossierPersonList;
+    @OneToMany(mappedBy = "dossier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DossierPerson> dossierPersons = new ArrayList<>();
+
+
+    public void addPerson(Person person){
+
+        DossierPerson dossierPerson = new DossierPerson();
+        dossierPerson.setDossier(this);
+        dossierPerson.setPerson(person);
+
+        this.dossierPersons.add(dossierPerson);
+       // person.getDossierPersons().add(dossierPerson);
+    }
+
+    public void removePerson(Person person){
+
+        DossierPerson dossierPerson = this.dossierPersons.stream().filter(dp -> dp.getPerson().getId().equals(person.getId())).findFirst().orElse(null);
+        if(dossierPerson != null){
+            this.dossierPersons.remove(dossierPerson);
+            person.getDossierPersons().remove(dossierPerson);
+        }
+
+    }
 
     public Long getId() {
         return id;
@@ -28,12 +50,12 @@ public class Dossier {
         this.name = name;
     }
 
-    public List<DossierPerson> getDossierPersonList() {
-        return dossierPersonList;
+    public List<DossierPerson> getDossierPersons() {
+        return dossierPersons;
     }
 
-    public void setDossierPersonList(List<DossierPerson> dossierPersonList) {
-        this.dossierPersonList = dossierPersonList;
+    public void setDossierPersons(List<DossierPerson> dossierPersons) {
+        this.dossierPersons = dossierPersons;
     }
 
     @Override
@@ -41,7 +63,7 @@ public class Dossier {
         return "Dossier{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", dossierPersonList=" + dossierPersonList +
+                ", dossierPersonList=" + dossierPersons +
                 '}';
     }
 }

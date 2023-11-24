@@ -3,6 +3,7 @@ package com.java.orm.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,15 @@ public class Person {
     private Long id;
     private String name;
     @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
-    private List<DossierPerson> dossierPersonList;
+    private List<DossierPerson> dossierPersons = new ArrayList<>();
+
+    public Person() {
+    }
+
+    public Person(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -29,12 +38,12 @@ public class Person {
         this.name = name;
     }
 
-    public List<DossierPerson> getDossierPersonList() {
-        return dossierPersonList;
+    public List<DossierPerson> getDossierPersons() {
+        return dossierPersons;
     }
 
-    public void setDossierPersonList(List<DossierPerson> dossierPersonList) {
-        this.dossierPersonList = dossierPersonList;
+    public void setDossierPersons(List<DossierPerson> dossierPersons) {
+        this.dossierPersons = dossierPersons;
     }
 
 }
