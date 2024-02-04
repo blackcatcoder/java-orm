@@ -16,7 +16,6 @@ public class IndexController {
 
   private final DossierRepository dossierRepository;
   private final PersonRepository personRepository;
-
   private final DossierPersonRepository dossierPersonRepository;
 
   public IndexController(
