@@ -1,9 +1,14 @@
 package com.hibernate.dao;
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import com.hibernate.entity.Customer;
 
@@ -53,4 +58,38 @@ public class CustomerDAO {
 		em.getTransaction().commit();
 		em.close();
 	}
+	
+	public List<Customer> findAll(){
+		EntityManager em = entityManagerFactory.createEntityManager();
+		em.getTransaction().begin();
+		
+		List<Customer> customers = em.createQuery("select m from Customer m", Customer.class).getResultList();
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		return customers;
+	}
+	
+	public Customer findWithCriteria() {
+		EntityManager em = entityManagerFactory.createEntityManager();
+		em.getTransaction().begin();
+		
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class );
+		Root<Customer> root = criteria.from(Customer.class);
+		criteria.select( root );
+		//criteria.where(builder.equal( root.get(Customer_.userName ), "John Doe"));
+
+		List<Customer> customers = em.createQuery(criteria).getResultList();
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		if(!customers.isEmpty()) {
+			return customers.get(0);
+		}
+		return null;
+	}
+	
 }

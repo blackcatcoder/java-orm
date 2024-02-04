@@ -1,12 +1,16 @@
 package com.hibernate.controller;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.hibernate.dao.CustomerDAO;
+import com.hibernate.entity.Customer;
 
 @Path("customer")
 public class CustomerController {
@@ -36,5 +40,17 @@ public class CustomerController {
 		CustomerDAO.getInstant().testUpdate(id, userName);
 		
 		return "hello world";
+	}
+	
+	@GET
+	@Path("/findAll")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response findAllCustomer() {
+		
+		List<Customer> customers = CustomerDAO.getInstant().findAll();
+		System.out.print("customers: "+customers.size());
+		
+		return Response.status(200).type(MediaType.APPLICATION_JSON).entity(customers).build();
+		
 	}
 }

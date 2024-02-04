@@ -15,7 +15,6 @@
 
 	<dependencies>
 
-
 		<!-- run java web service -->
 		<dependency>
 			<groupId>javax.ws.rs</groupId>
@@ -37,41 +36,25 @@
 			<artifactId>jersey-hk2</artifactId>
 			<version>2.26</version>
 		</dependency>
+		<!-- support return json-->
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.26-b06</version>
+		</dependency>
 
-
-		<!-- hibernate lib-->
-		<!--
+		<!-- hibernate-->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.2.12.Final</version>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.6.15.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
-			<version>5.4.33.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.1-api</artifactId>
-			<version>1.0.2.Final</version>
-		</dependency>
-		-->
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-entitymanager</artifactId>
-		    <version>5.6.15.Final</version>
+			<version>6.1.7.Final</version>
 		</dependency>
 
-
-
-		<dependency>
-			<groupId>engvoc</groupId>
-			<artifactId>engvoc</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
-
 
 </project>
