@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import com.hibernate.entity.Customer;
+import com.hibernate.entity.Customer_;
 
 public class CustomerDAO {
 	
@@ -79,7 +80,7 @@ public class CustomerDAO {
 		CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class );
 		Root<Customer> root = criteria.from(Customer.class);
 		criteria.select( root );
-		//criteria.where(builder.equal( root.get(Customer_.userName ), "John Doe"));
+		criteria.where(builder.equal( root.get(Customer_.userName ), "John Doe"));
 
 		List<Customer> customers = em.createQuery(criteria).getResultList();
 		
