@@ -75,7 +75,7 @@ public class CustomerDAOTest extends TestCase {
 		testTuple(entityManager);
 
 	}
-
+	
 	
 	// Test Tuple
 	public void testTuple(EntityManager entityManager) {

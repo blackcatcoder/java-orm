@@ -22,6 +22,8 @@ public class Project implements Serializable {
 
 	@Column(name = "project_name")
 	private String projectName;
+	
+	
 
 	public Long getId() {
 		return id;

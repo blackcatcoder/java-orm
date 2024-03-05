@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hibernate-core</name>
 	<packaging>war</packaging>
-
+	
 	<properties>
 		<google-java-format.version>1.18.1</google-java-format.version>
 	</properties>
