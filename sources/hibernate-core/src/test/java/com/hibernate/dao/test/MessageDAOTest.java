@@ -1,5 +1,13 @@
 package com.hibernate.dao.test;
 
+import org.junit.Test;
+import org.junit.BeforeClass;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,49 +17,57 @@ import javax.persistence.Persistence;
 
 import com.hibernate.entity.Message;
 
-import junit.framework.TestCase;
+public class MessageDAOTest {
 
-public class MessageDAOTest extends TestCase {
+	private static EntityManagerFactory emf;
+	private EntityManager em;
+	private EntityTransaction et;
 
-	private EntityManagerFactory emf;
-
-	@Override
-	protected void setUp() throws Exception {
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		//System.out.println("before class");
 		emf = Persistence.createEntityManagerFactory("hibernate-core");
 	}
 
-	@Override
-	protected void tearDown() throws Exception {
+	@Before
+	public void setUp() throws Exception {
+		//System.out.println("before");
+		em = emf.createEntityManager();
+		et = em.getTransaction();
+		et.begin();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		//System.out.println("after");
+		et.commit();
+		em.close();
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		//System.out.println("after class");
 		emf.close();
 	}
 
-	public void testSaveMessage() {
-
-		// prepare
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		et.begin();
+	@Test
+	public void saveMessageTest() {
 
 		// do the business
 		Message message = new Message();
 		message.setText("hello world");
-
 		em.persist(message);
 
 		// test
 		List<Message> messages = em.createQuery("select m from Message m", Message.class).getResultList();
-		// SELECT * from MESSAGE
-
-		for (Message ms : messages) {
-			System.out.println(ms.getText());
-		}
-
 		assertEquals(messages.size(), 1);
 		assertEquals(messages.get(0).getText(), "hello world");
-
-		// clean up
-		et.commit();
-		em.close();
+		
+		
+		List<Message> messages2 = em.createQuery("select new com.hibernate.entity.Message(m.text) from Message m", Message.class).getResultList();
+		assertEquals(messages2.size(), 1);
+		
+		
 
 	}
 

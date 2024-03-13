@@ -1,6 +1,7 @@
 package com.hibernate.dao.test;
 
 import junit.framework.TestCase;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,6 +11,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
+
+import org.junit.Before;
 
 import com.hibernate.entity.Customer;
 import com.hibernate.entity.Customer_;
@@ -32,24 +35,33 @@ public class CustomerDAOTest extends TestCase {
 		entityManagerFactory.close();
 	}
 
-	public void testBasicUsage() {
+	@Before
+	public void initData() {
 		// create a couple of events...
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
+
 		entityManager.persist(new Customer("Cust1"));
 		entityManager.persist(new Customer("Cust2"));
 		entityManager.persist(new Customer("Cust3"));
 
 		entityManager.getTransaction().commit();
 		entityManager.close();
+	}
+
+	public void testBasicUsage() {
+
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 		// now lets pull events from the database and list them
 		entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
+
 		List<Customer> result = entityManager.createQuery("from Customer", Customer.class).getResultList();
 		for (Customer cust : result) {
 			System.out.println("Customer Name: " + cust.getUserName());
 		}
+
 		entityManager.getTransaction().commit();
 		entityManager.close();
 
@@ -70,41 +82,45 @@ public class CustomerDAOTest extends TestCase {
 
 		entityManager.getTransaction().commit();
 		entityManager.close();
-		
+
 		// Test Tuple
-		testTuple(entityManager);
+		// testTuple(entityManager);
 
 	}
-	
-	
+
 	// Test Tuple
-	public void testTuple(EntityManager entityManager) {
-		entityManager = entityManagerFactory.createEntityManager();
+	public void testTuple() {
+
+		System.out.println("Tuple Customer Id: ");
+
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		
+
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-		
+
 		CriteriaQuery<Tuple> criteria = builder.createQuery(Tuple.class);
 		Root<Customer> root = criteria.from(Customer.class);
 
-		Path<Long> idPath = root.get(Customer_.id );
+		Path<Long> idPath = root.get(Customer_.id);
 		Path<String> userNamePath = root.get(Customer_.userName);
 
 		criteria.multiselect(idPath, userNamePath);
-		criteria.where(builder.equal(root.get(Customer_.userName), "Cust1" ) );
+		criteria.where(builder.equal(root.get(Customer_.userName), "Cust1"));
 
-		List<Tuple> tuples = entityManager.createQuery( criteria ).getResultList();
-		
+		List<Tuple> tuples = entityManager.createQuery(criteria).getResultList();
 
 		for (Tuple tuple : tuples) {
-		    Long id = tuple.get(idPath);
-		    String userName = tuple.get(userNamePath);
-		    
-		    System.out.println("Tuple Customer Id: " + id +" userName: "+userName);
+			Long id = tuple.get(idPath);
+			String userName = tuple.get(userNamePath);
+
+			System.out.println("Tuple Customer Id: " + id + " userName: " + userName);
 		}
-		
-		
+
 		entityManager.getTransaction().commit();
 		entityManager.close();
+	}
+
+	public void testProjection() {
+
 	}
 }
