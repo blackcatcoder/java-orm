@@ -25,13 +25,11 @@ public class MessageDAOTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		//System.out.println("before class");
 		emf = Persistence.createEntityManagerFactory("hibernate-core");
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		//System.out.println("before");
 		em = emf.createEntityManager();
 		et = em.getTransaction();
 		et.begin();
@@ -39,14 +37,12 @@ public class MessageDAOTest {
 
 	@After
 	public void tearDown() throws Exception {
-		//System.out.println("after");
 		et.commit();
 		em.close();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		//System.out.println("after class");
 		emf.close();
 	}
 
@@ -68,7 +64,10 @@ public class MessageDAOTest {
 		assertEquals(messages2.size(), 1);
 		
 		
-
+		//em.unw
+		
 	}
+	
+	
 
 }

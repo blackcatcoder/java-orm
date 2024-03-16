@@ -1,22 +1,25 @@
 package com.hibernate.entity;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "message")
+@Entity(name = "message")
 public class Message {
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
+	@Basic
+	@Column(name = "text")
 	private String text;
-	
-	public Message() {}
-	
+
+	public Message() {
+	}
+
 	public Message(String text) {
 		this.text = text;
 	}
