@@ -4,48 +4,11 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 
-	<persistence-unit name="hibernate-core">
-		<description>
-            Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide
-        </description>
-
-		<class>com.hibernate.entity.Customer</class>
-		<class>com.hibernate.entity.Room</class>
-		
-		<class>com.hibernate.entity.Developer</class>
-		<class>com.hibernate.entity.DeveloperProject</class>
-		<class>com.hibernate.entity.DeveloperProjectId</class>
-		<class>com.hibernate.entity.Project</class>
-
-		<class>com.hibernate.entity.Message</class>
-		
-		<class>com.hibernate.entity.phone.Person</class>
-		<class>com.hibernate.entity.phone.Phone</class>
-		
-		<exclude-unlisted-classes>true</exclude-unlisted-classes>
-
-		<properties>
-			<property name="javax.persistence.jdbc.driver"
-				value="org.h2.Driver" />
-			<property name="javax.persistence.jdbc.url"	value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;MVCC=TRUE" />
-			<property name="javax.persistence.jdbc.user" value="sa" />
-			<property name="javax.persistence.jdbc.password" value="" />
-
- 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
-			<property name="hibernate.show_sql" value="false" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.use_sql_comments" value="true" />
-
-		</properties>
-		
-
-	</persistence-unit>
+	
 	
 	<!-- persistence for test -->
-		<persistence-unit name="hibernate-core-test">
-		<description>
-            Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide
-        </description>
+	<persistence-unit name="hibernate-core-test">
+			<description>Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide</description>
 
 		<class>com.hibernate.entity.Customer</class>
 		<class>com.hibernate.entity.Room</class>
@@ -56,6 +19,9 @@
 		<class>com.hibernate.entity.Project</class>
 
 		<class>com.hibernate.entity.Message</class>
+		
+		<class>com.hibernate.entity.company.Employee</class>
+		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>
@@ -77,12 +43,7 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 </persistence>
 

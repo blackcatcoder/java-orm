@@ -19,34 +19,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-public class PersonDAOTest {
+public class PersonDAOTest extends BaseDAOTest {
 	
-	private static EntityManagerFactory emf;
-	private EntityManager em;
-	private EntityTransaction et;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("hibernate-core");
-	}
-
-	@Before
-	public void setUp() throws Exception {
-		em = emf.createEntityManager();
-		et = em.getTransaction();
-		et.begin();
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		et.commit();
-		em.close();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		emf.close();
-	}
 	
 	@Test
 	public void savePersonTest() {

@@ -6,8 +6,8 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.ColumnTransformer;
 
-@Entity(name="employee")
-public class Employee {
+@Entity(name="employee1")
+public class Employee1 {
 	
 	@Id
 	private Long id;
