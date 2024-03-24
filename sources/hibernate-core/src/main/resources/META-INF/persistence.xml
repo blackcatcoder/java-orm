@@ -10,7 +10,7 @@
 	<persistence-unit name="hibernate-core-test">
 			<description>Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide</description>
 
-		<class>com.hibernate.entity.Customer</class>
+		<class>com.hibernate.entity.native_sql.Customer</class>
 		<class>com.hibernate.entity.Room</class>
 		
 		<class>com.hibernate.entity.Developer</class>
@@ -20,7 +20,7 @@
 
 		<class>com.hibernate.entity.Message</class>
 		
-		<class>com.hibernate.entity.company.Employee</class>
+		<class>com.hibernate.entity.criteria.Employee</class>
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 

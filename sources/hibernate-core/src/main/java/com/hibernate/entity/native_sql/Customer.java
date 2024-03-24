@@ -1,4 +1,4 @@
-package com.hibernate.entity;
+package com.hibernate.entity.native_sql;
 
 import java.io.Serializable;
 
@@ -20,15 +20,12 @@ public class Customer implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 
-	@Column(name = "user_name")
-	private String userName;
+	@Column(name = "name")
+	private String name;
 	
-	public Customer() {}
+	@Column(name = "age")
+	private int age;
 	
-	public Customer(String userName) {
-		this.userName = userName;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -37,12 +34,20 @@ public class Customer implements Serializable {
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 }

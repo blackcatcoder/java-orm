@@ -10,8 +10,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import com.hibernate.entity.Customer;
-import com.hibernate.entity.Customer_;
+import com.hibernate.entity.native_sql.Customer;
+import com.hibernate.entity.native_sql.Customer_;
 
 public class CustomerDAO {
 	
@@ -39,8 +39,10 @@ public class CustomerDAO {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 
-		Customer cust1 = new Customer("cust1");
-		Customer cust2 = new Customer("cust2");
+		Customer cust1 = new Customer();
+		cust1.setName("cust1");
+		Customer cust2 = new Customer();
+		cust1.setName("cust2");
 
 		entityManager.persist(cust1);
 		entityManager.persist(cust2);
@@ -54,7 +56,7 @@ public class CustomerDAO {
 		em.getTransaction().begin();
 
 		Customer cust1 = em.find(Customer.class, Long.parseLong(id));
-		cust1.setUserName(newUserName);
+		cust1.setName(newUserName);
 
 		em.getTransaction().commit();
 		em.close();

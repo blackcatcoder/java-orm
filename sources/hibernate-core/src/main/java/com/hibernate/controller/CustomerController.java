@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.hibernate.dao.CustomerDAO;
-import com.hibernate.entity.Customer;
+import com.hibernate.entity.native_sql.Customer;
 
 @Path("customer")
 public class CustomerController {
