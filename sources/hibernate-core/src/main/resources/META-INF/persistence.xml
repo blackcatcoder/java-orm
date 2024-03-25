@@ -22,6 +22,9 @@
 		
 		<class>com.hibernate.entity.criteria.Employee</class>
 		
+		<!-- domain model -->
+		<class>com.hibernate.entity.domain_model.Contact</class>
+		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>
