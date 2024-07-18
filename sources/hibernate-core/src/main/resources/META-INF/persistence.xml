@@ -8,7 +8,7 @@
 	
 	<!-- persistence for test -->
 	<persistence-unit name="hibernate-core-test">
-			<description>Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide</description>
+		<description>Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide</description>
 
 		<class>com.hibernate.entity.native_sql.Customer</class>
 		<class>com.hibernate.entity.Room</class>
@@ -24,12 +24,15 @@
 		
 		<!-- domain model -->
 		<class>com.hibernate.entity.domain_model.Contact</class>
+		<class>com.hibernate.entity.domain_model.basic_type.User</class>
+		
+		<class>com.hibernate.entity.enums.Trip</class>
+		
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>
-			<property name="javax.persistence.jdbc.driver"
-				value="org.h2.Driver" />
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
 			<property name="javax.persistence.jdbc.url"	value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;MVCC=TRUE" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.password" value="" />
@@ -38,7 +41,6 @@
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.use_sql_comments" value="true" />
-
 		</properties>
 		
 
@@ -46,7 +48,6 @@
 	
 	
 	
-
 	
 </persistence>
 

@@ -12,9 +12,8 @@
 		<google-java-format.version>1.18.1</google-java-format.version>
 	</properties>
 
-
 	<dependencies>
-
+		
 		<!-- run java web service -->
 		<dependency>
 			<groupId>javax.ws.rs</groupId>
