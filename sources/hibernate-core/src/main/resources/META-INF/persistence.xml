@@ -28,6 +28,9 @@
 		
 		<class>com.hibernate.entity.enums.Trip</class>
 		
+		<class>com.hibernate.entity.one_to_many_bidirection.Order1</class>
+		<class>com.hibernate.entity.one_to_many_bidirection.OrderItem</class>
+		
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
