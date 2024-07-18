@@ -24,6 +24,7 @@ public class JUnitAppTest {
     public void getMessageTest(){
        // JUnitApp jUnitApp = new JUnitApp();
       //  assertEquals("hello anhvi", jUnitApp.getMessage("anhvi"));
+
     }
 
     @Test
