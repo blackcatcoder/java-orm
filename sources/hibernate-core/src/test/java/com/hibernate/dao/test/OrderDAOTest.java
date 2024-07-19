@@ -51,6 +51,10 @@ public class OrderDAOTest {
 	@Test
 	public void saveMessageTest() {
 		
+		
+		// because we have cascade.All in Order1 so we do not need to persist item
+		// whenever we persist order it will automatic persists item
+		
 		OrderItem item = new OrderItem();
 		item.setItemName("item name");
 		
@@ -59,8 +63,8 @@ public class OrderDAOTest {
 		order.addItem(item);
 		
 		em.persist(order);
-		em.persist(item);
 		
+		// start test
 		List<Order1> orders = em.createQuery("select o from Order1 o", Order1.class).getResultList();
 		
 		assertEquals(orders.size(), 1);
@@ -71,11 +75,9 @@ public class OrderDAOTest {
 	    System.out.println(items.get(0).getItemName());
 
 
-	    
-	    // case 1: this case remove will remove all oder item belong to
-	   //  em.remove(orders.get(0).removeItem(item));
-	    // List<OrderItem> orderItems = em.createQuery("select oi from OrderItem oi", OrderItem.class).getResultList();
-	    // assertEquals(orderItems.size(), 0);
+	     // 
+	     List<OrderItem> orderItems = em.createQuery("select oi from OrderItem oi", OrderItem.class).getResultList();
+	     assertEquals(orderItems.size(), 1);
 	    
 
 	    
