@@ -40,4 +40,9 @@ public class Message {
 		this.text = text;
 	}
 
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", text=" + text + "]";
+	}
+
 }

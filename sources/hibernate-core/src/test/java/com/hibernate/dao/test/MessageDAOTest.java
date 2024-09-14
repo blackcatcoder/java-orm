@@ -1,73 +1,61 @@
 package com.hibernate.dao.test;
 
 import org.junit.Test;
-import org.junit.BeforeClass;
 import static org.junit.Assert.assertEquals;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
+import com.hibernate.dao.MessageDAO;
 import com.hibernate.entity.Message;
 
 public class MessageDAOTest {
 
-	private static EntityManagerFactory emf;
-	private EntityManager em;
-	private EntityTransaction et;
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("hibernate-core");
-	}
-
-	@Before
-	public void setUp() throws Exception {
-		em = emf.createEntityManager();
-		et = em.getTransaction();
-		et.begin();
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		et.commit();
-		em.close();
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		emf.close();
-	}
-
 	@Test
 	public void saveMessageTest() {
+		System.out.println("---> start saveMessageTest");
 
+		MessageDAO messageDAO = MessageDAO.getInstance();
+		
 		// do the business
+		final String text = "hello world";
+		
+		// action save
 		Message message = new Message();
-		message.setText("hello world");
-		em.persist(message);
-
-		// test
-		List<Message> messages = em.createQuery("select m from Message m", Message.class).getResultList();
-		assertEquals(messages.size(), 1);
-		assertEquals(messages.get(0).getText(), "hello world");
+		message.setText(text);
+		messageDAO.creteNewMessage(message);
+		
+		// action find
+		List<Message> messages1 = messageDAO.findMessageByText(text);
+		assertNotNull(messages1);
+		assertEquals(messages1.size(), 1);
+		assertEquals(messages1.get(0).getText(), "hello world");
+		
+		System.out.println("info: "+messages1.get(0));
+		
+		// action update
+		Message updateMessage = messages1.get(0);
+		updateMessage.setText("new");
+		messageDAO.updateMessage(updateMessage);
+		
+		// action find
+		List<Message> messagesUpdate = messageDAO.findAll();
+		assertEquals(messagesUpdate.size(), 1);
+		assertEquals(messagesUpdate.get(0).getText(), "new");
+		
+		// action save
+		Message message2 = new Message();
+		message2.setText(text);
+		messageDAO.creteNewMessage(message2);
+		
+		// action find
+		List<Message> messages2 = messageDAO.findAll();
+		assertNotNull(messages2);
+		assertEquals(messages2.size(), 2);
 		
 		
-		List<Message> messages2 = em.createQuery("select new com.hibernate.entity.Message(m.text) from Message m", Message.class).getResultList();
-		assertEquals(messages2.size(), 1);
 		
-		
-		//em.unw
-		
+		System.out.println("---> end saveMessageTest");
 	}
 	
-	
-
 }

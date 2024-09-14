@@ -17,7 +17,6 @@ import org.junit.Test;
 
 import com.hibernate.entity.one_to_many_bidirection.Order1;
 import com.hibernate.entity.one_to_many_bidirection.OrderItem;
-import com.hibernate.entity.phone.Person;
 
 public class OrderDAOTest {
 
