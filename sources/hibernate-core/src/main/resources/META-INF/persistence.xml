@@ -32,6 +32,11 @@
 		<class>com.hibernate.entity.one_to_many_bidirection.OrderItem</class>
 		
 		
+		<class>com.hibernate.persistence.one_to_one.Manuscript</class>
+		<class>com.hibernate.persistence.one_to_one.Book</class>
+		
+		
+		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>
