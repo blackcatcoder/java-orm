@@ -82,7 +82,7 @@ public class CustomerDAO {
 		CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class );
 		Root<Customer> root = criteria.from(Customer.class);
 		criteria.select( root );
-		criteria.where(builder.equal( root.get(Customer_.userName ), "John Doe"));
+		criteria.where(builder.equal( root.get(Customer_.name ), "John Doe"));
 
 		List<Customer> customers = em.createQuery(criteria).getResultList();
 		
