@@ -3,6 +3,7 @@ package com.hibernate.manytomany;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,4 +55,18 @@ public class Address implements Serializable {
 		this.persons = persons;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Address address = (Address) o;
+		return Objects.equals(addressDesc, address.addressDesc);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(addressDesc);
+	}
 }

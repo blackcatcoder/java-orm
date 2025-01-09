@@ -40,8 +40,10 @@ public class Person implements Serializable {
 	public void removeAddress(Address address) {
 		PersonAddress personAddress = new PersonAddress(this, address);
 		
-		
-		
+		address.getPersons().remove(personAddress);
+		addresses.remove(personAddress);
+		personAddress.setPerson(null);
+		personAddress.setAddress(null);
 	}
 
 	public Long getId() {

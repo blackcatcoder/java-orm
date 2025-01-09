@@ -1,5 +1,7 @@
 package com.hibernate.manytomany;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -12,7 +14,7 @@ import javax.persistence.Table;
 public class PersonAddress {
 
 	@EmbeddedId
-	private PersonAddressId wordSentenceId = new PersonAddressId();
+	private PersonAddressId wordSentenceId;
 
 	@ManyToOne
 	@MapsId("personId")
@@ -25,13 +27,15 @@ public class PersonAddress {
 	@Column(name = "future_field")
 	private String futureField;
 
-	public PersonAddress() {}
-	
+	public PersonAddress() {
+	}
+
 	public PersonAddress(Person person, Address address) {
 		this.person = person;
 		this.address = address;
+		wordSentenceId = new PersonAddressId(person.getId(), address.getId());
 	}
-	
+
 	public PersonAddressId getWordSentenceId() {
 		return wordSentenceId;
 	}
@@ -62,5 +66,22 @@ public class PersonAddress {
 
 	public void setFutureField(String futureField) {
 		this.futureField = futureField;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		PersonAddress that = (PersonAddress) o;
+		return Objects.equals(person, that.person) && Objects.equals(address, that.address);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(person, address);
 	}
 }
