@@ -4,10 +4,13 @@
 	version="2.0">
 
 
-	<persistence-unit name="hibernate-h2">
+	<persistence-unit name="hibernate-core">
 		<description>Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide</description>
 		
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		
+		<class>com.hibernate.hello.Message</class>
+		
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
@@ -15,7 +18,7 @@
 			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.password" value="" />
 
- 			<property name="javax.persistence.schema-generation.database.action" value="update" />
+ 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.use_sql_comments" value="true" />
