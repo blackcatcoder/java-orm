@@ -1,7 +1,7 @@
 package com.hibernate.dao.test.native_sql;
 
 import com.hibernate.dao.test.BaseDAOTest;
-import com.hibernate.entity.native_sql.Customer;
+import com.hibernate.native_sql.Customer;
 
 import static org.junit.Assert.assertEquals;
 

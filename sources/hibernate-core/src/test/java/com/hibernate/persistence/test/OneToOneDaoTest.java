@@ -3,8 +3,8 @@ package com.hibernate.persistence.test;
 import org.junit.Test;
 
 import com.hibernate.dao.test.BaseDAOTest;
-import com.hibernate.persistence.one_to_one.Book;
-import com.hibernate.persistence.one_to_one.Manuscript;
+import com.hibernate.one_to_one.Book;
+import com.hibernate.one_to_one.Manuscript;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

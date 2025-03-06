@@ -15,8 +15,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.hibernate.entity.enums.Trip;
-import com.hibernate.entity.enums.Vehicle;
+import com.hibernate.enums.Trip;
+import com.hibernate.enums.Vehicle;
 
 public class TripDAOTest {
 	

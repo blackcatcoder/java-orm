@@ -1,4 +1,4 @@
-package com.hibernate.entity.criteria;
+package com.hibernate.criteria;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

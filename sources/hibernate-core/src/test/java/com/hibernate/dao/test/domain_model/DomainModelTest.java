@@ -1,8 +1,8 @@
 package com.hibernate.dao.test.domain_model;
 
 import com.hibernate.dao.test.BaseDAOTest;
-import com.hibernate.entity.domain_model.Contact;
-import com.hibernate.entity.domain_model.Name;
+import com.hibernate.domain_model.Contact;
+import com.hibernate.domain_model.Name;
 
 import static org.junit.Assert.assertEquals;
 

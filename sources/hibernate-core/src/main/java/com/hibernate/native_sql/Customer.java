@@ -1,4 +1,4 @@
-package com.hibernate.entity.native_sql;
+package com.hibernate.native_sql;
 
 import java.io.Serializable;
 

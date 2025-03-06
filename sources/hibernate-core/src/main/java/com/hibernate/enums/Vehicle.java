@@ -1,4 +1,4 @@
-package com.hibernate.entity.enums;
+package com.hibernate.enums;
 
 import org.hibernate.boot.model.naming.IllegalIdentifierException;
 

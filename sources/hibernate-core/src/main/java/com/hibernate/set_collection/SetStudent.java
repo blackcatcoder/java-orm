@@ -1,4 +1,4 @@
-package com.hibernate.entity.set_collection;
+package com.hibernate.set_collection;
 
 import java.util.Set;
 

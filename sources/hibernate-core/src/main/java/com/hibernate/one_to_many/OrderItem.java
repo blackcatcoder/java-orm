@@ -1,4 +1,4 @@
-package com.hibernate.entity.one_to_many_bidirection;
+package com.hibernate.one_to_many;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

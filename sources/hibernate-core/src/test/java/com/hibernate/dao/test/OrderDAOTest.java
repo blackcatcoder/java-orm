@@ -15,8 +15,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.hibernate.entity.one_to_many_bidirection.Order1;
-import com.hibernate.entity.one_to_many_bidirection.OrderItem;
+import com.hibernate.one_to_many.Order1;
+import com.hibernate.one_to_many.OrderItem;
 
 public class OrderDAOTest {
 

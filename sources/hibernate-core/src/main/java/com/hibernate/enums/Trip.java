@@ -1,4 +1,4 @@
-package com.hibernate.entity.enums;
+package com.hibernate.enums;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

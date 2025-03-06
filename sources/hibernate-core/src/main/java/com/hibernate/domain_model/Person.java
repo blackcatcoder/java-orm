@@ -1,4 +1,4 @@
-package com.hibernate.entity.domain_model;
+package com.hibernate.domain_model;
 
 import javax.persistence.MappedSuperclass;
 

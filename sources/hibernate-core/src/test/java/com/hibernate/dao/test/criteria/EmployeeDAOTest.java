@@ -12,9 +12,9 @@ import javax.persistence.criteria.Root;
 
 import org.junit.Test;
 
+import com.hibernate.criteria.Employee;
 import com.hibernate.dao.test.BaseDAOTest;
 import com.hibernate.entity.criteria.Employee_;
-import com.hibernate.entity.criteria.Employee;
 
 public class EmployeeDAOTest extends BaseDAOTest {
 
