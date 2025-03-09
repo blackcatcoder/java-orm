@@ -30,22 +30,6 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy = "person" )
 	private List<PersonAddress> personAddresses = new ArrayList<>();
 
-//	public void addAddress(Address address) {
-//		PersonAddress personAddress = new PersonAddress(this, address);
-//
-//		addresses.add(personAddress);
-//		address.getPersons().add(personAddress);
-//	}
-//
-//	public void removeAddress(Address address) {
-//		PersonAddress personAddress = new PersonAddress(this, address);
-//
-//		address.getPersons().remove(personAddress);
-//		addresses.remove(personAddress);
-//		personAddress.setPerson(null);
-//		personAddress.setAddress(null);
-//	}
-
 	public Long getId() {
 		return id;
 	}
