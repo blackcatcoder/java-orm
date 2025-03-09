@@ -12,13 +12,13 @@
 		
 		<!-- many to many -->
 		
-		<class>com.hibernate.manytomany.Person</class>
-		<class>com.hibernate.manytomany.PersonAddress</class>
-		<class>com.hibernate.manytomany.PersonAddressId</class>
-		<class>com.hibernate.manytomany.Address</class>
+		<class>com.hibernate.many_to_many.Person</class>
+		<class>com.hibernate.many_to_many.PersonAddress</class>
+		<class>com.hibernate.many_to_many.PersonAddressId</class>
+		<class>com.hibernate.many_to_many.Address</class>
 		 
-		<class>com.hibernate.manytomany.Category</class>
-		<class>com.hibernate.manytomany.Item</class>
+		<class>com.hibernate.many_to_many.Category</class>
+		<class>com.hibernate.many_to_many.Item</class>
 		
 		
 		

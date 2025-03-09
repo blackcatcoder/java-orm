@@ -1,4 +1,4 @@
-package com.hibernate.manytomany;
+package com.hibernate.many_to_many;
 
 import java.util.HashSet;
 import java.util.Set;
