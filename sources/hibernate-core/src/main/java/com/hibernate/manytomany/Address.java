@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,8 +27,8 @@ public class Address implements Serializable {
 	@Column(name = "address_desc")
 	private String addressDesc;
 
-	@OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<PersonAddress> persons = new ArrayList<>();
+	@OneToMany(mappedBy = "address")
+	private List<PersonAddress> personAddresses = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -47,12 +46,12 @@ public class Address implements Serializable {
 		this.addressDesc = addressDesc;
 	}
 
-	public List<PersonAddress> getPersons() {
-		return persons;
+	public List<PersonAddress> getPersonAddresses() {
+		return personAddresses;
 	}
 
-	public void setPersons(List<PersonAddress> persons) {
-		this.persons = persons;
+	public void setPersonAddresses(List<PersonAddress> personAddresses) {
+		this.personAddresses = personAddresses;
 	}
 
 	@Override

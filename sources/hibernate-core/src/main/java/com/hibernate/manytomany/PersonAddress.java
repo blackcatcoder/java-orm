@@ -5,8 +5,8 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
@@ -14,14 +14,22 @@ import javax.persistence.Table;
 public class PersonAddress {
 
 	@EmbeddedId
-	private PersonAddressId wordSentenceId;
+	private PersonAddressId wordSentenceId = new PersonAddressId();
 
 	@ManyToOne
-	@MapsId("personId")
+	@JoinColumn(
+			name="person_id",
+			insertable = false,
+			updatable = false
+	)
 	private Person person;
 
 	@ManyToOne
-	@MapsId("addressId")
+	@JoinColumn(
+			name="address_id",
+			insertable = false,
+			updatable = false
+	)
 	private Address address;
 
 	@Column(name = "future_field")
@@ -33,7 +41,11 @@ public class PersonAddress {
 	public PersonAddress(Person person, Address address) {
 		this.person = person;
 		this.address = address;
-		wordSentenceId = new PersonAddressId(person.getId(), address.getId());
+		this.futureField = "future field";
+		
+		this.wordSentenceId = new PersonAddressId(person.getId(), address.getId());
+		person.getPersonAddresses().add(this);
+		address.getPersonAddresses().add(this);
 	}
 
 	public PersonAddressId getWordSentenceId() {

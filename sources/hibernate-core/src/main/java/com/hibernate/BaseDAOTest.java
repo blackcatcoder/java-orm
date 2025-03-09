@@ -18,11 +18,15 @@ public abstract class BaseDAOTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		System.out.println(">> setUpBeforeClass");
+		
 		emf = Persistence.createEntityManagerFactory("hibernate-core");
 	}
 
 	@Before
 	public void setUp() throws Exception {
+		System.out.println(">> setUp");
+		
 		em = emf.createEntityManager();
 		et = em.getTransaction();
 		et.begin();
@@ -30,12 +34,16 @@ public abstract class BaseDAOTest {
 
 	@After
 	public void tearDown() throws Exception {
+		System.out.println(">> tearDown");
+		
 		et.commit();
 		em.close();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		System.out.println(">> tearDownAfterClass");
+		
 		emf.close();
 	}
 

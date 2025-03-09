@@ -15,6 +15,8 @@ public class PersonAddressId implements Serializable {
 
 	@Column(name = "address_id")
 	private Long addressId;
+	
+	public PersonAddressId() {}
 
 	public PersonAddressId(Long personId, Long addressId) {
 		this.personId = personId;

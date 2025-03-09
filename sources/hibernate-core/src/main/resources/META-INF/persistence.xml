@@ -7,8 +7,20 @@
 	<persistence-unit name="hibernate-core">
 		<description>Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide</description>
 		
-		
+		<!-- 1: hello -->
 		<class>com.hibernate.hello.Message</class>
+		
+		<!-- many to many -->
+		
+		<class>com.hibernate.manytomany.Person</class>
+		<class>com.hibernate.manytomany.PersonAddress</class>
+		<class>com.hibernate.manytomany.PersonAddressId</class>
+		<class>com.hibernate.manytomany.Address</class>
+		 
+		<class>com.hibernate.manytomany.Category</class>
+		<class>com.hibernate.manytomany.Item</class>
+		
+		
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 

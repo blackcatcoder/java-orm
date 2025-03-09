@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,24 +27,24 @@ public class Person implements Serializable {
 	@Column(name = "desc")
 	private String desc;
 
-	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<PersonAddress> addresses = new ArrayList<>();
+	@OneToMany(mappedBy = "person" )
+	private List<PersonAddress> personAddresses = new ArrayList<>();
 
-	public void addAddress(Address address) {
-		PersonAddress personAddress = new PersonAddress(this, address);
-
-		addresses.add(personAddress);
-		address.getPersons().add(personAddress);
-	}
-
-	public void removeAddress(Address address) {
-		PersonAddress personAddress = new PersonAddress(this, address);
-
-		address.getPersons().remove(personAddress);
-		addresses.remove(personAddress);
-		personAddress.setPerson(null);
-		personAddress.setAddress(null);
-	}
+//	public void addAddress(Address address) {
+//		PersonAddress personAddress = new PersonAddress(this, address);
+//
+//		addresses.add(personAddress);
+//		address.getPersons().add(personAddress);
+//	}
+//
+//	public void removeAddress(Address address) {
+//		PersonAddress personAddress = new PersonAddress(this, address);
+//
+//		address.getPersons().remove(personAddress);
+//		addresses.remove(personAddress);
+//		personAddress.setPerson(null);
+//		personAddress.setAddress(null);
+//	}
 
 	public Long getId() {
 		return id;
@@ -63,12 +62,12 @@ public class Person implements Serializable {
 		this.desc = desc;
 	}
 
-	public List<PersonAddress> getAddresses() {
-		return addresses;
+	public List<PersonAddress> getPersonAddresses() {
+		return personAddresses;
 	}
 
-	public void setAddresses(List<PersonAddress> addresses) {
-		this.addresses = addresses;
+	public void setPersonAddresses(List<PersonAddress> personAddresses) {
+		this.personAddresses = personAddresses;
 	}
 
 	@Override

@@ -20,6 +20,8 @@ public class HelloAppTest extends BaseDAOTest {
 		List<Message> messagees = em.createQuery("select m from Message m", Message.class).getResultList();
 
 		assertEquals(messagees.size(), 1);
+		assertEquals(messagees.get(0).getText(), "hello world");
+		
 	}
 
 }
