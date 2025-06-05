@@ -9,8 +9,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.Session;
-
 import com.hibernate.entity.native_sql.Customer_;
 import com.hibernate.native_sql.Customer;
 

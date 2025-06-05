@@ -22,6 +22,5 @@ public class Employee1 {
 	@Column(name="password")
 	private String password;
 	
-	
 
 }

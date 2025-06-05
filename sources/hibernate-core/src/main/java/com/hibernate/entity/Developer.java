@@ -23,9 +23,6 @@ public class Developer implements Serializable {
 	@Column(name = "user_name")
 	private String userName;
 	
-	
-	
-
 	public Long getId() {
 		return id;
 	}
